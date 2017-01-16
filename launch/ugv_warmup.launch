@@ -1,0 +1,169 @@
+<launch>
+	<master auto="start"/>
+	<arg name="start_rviz_automatically" default="false"/>
+
+	<rosparam command="load" file="$(find teleop_ugv)/param/ugv_config.yaml" />
+ 	
+ 	<!-- DRIVERS -->
+
+ 	<node 
+		name="base_driver" 
+		pkg="rosserial_python" 
+		type="serial_node.py" 
+		output="screen" 
+		respawn="true">
+		
+		<param name="port" value="/dev/UGV.BASE" />
+		<param name="baud" value="57600" />
+	</node>
+<!--  	<node 
+		name="head_driver" 
+		pkg="rosserial_python" 
+		type="serial_node.py" 
+		output="screen" 
+		respawn="true">
+		
+		<param name="port" value="/dev/UGV.HEAD.CONTROLLER" /> 
+		<param name="baud" value="57600" />
+	</node>
+
+	<node name="arbotix" pkg="arbotix_python" type="arbotix_driver" output="screen">
+		<rosparam file="$(find teleop_ugv)/chassis_conf/tilt_head_conf.yaml" command="load" />
+	</node> -->
+
+    	<!--  -->
+
+<!--     <node pkg="mavros" type="mavros_node" name="base_imu" 
+    	required="true" clear_params="true" output="log">
+        <param name="fcu_url" value="/dev/UGV.BASE.IMU:115200" />
+        <param name="gcs_url" value="" />
+        <param name="target_system_id" value="1" />
+        <param name="target_component_id" value="1" />
+
+        <rosparam command="load" file="$(find mavros)/launch/apm_pluginlists.yaml" />
+        <rosparam command="load" file="$(find mavros)/launch/apm_config.yaml" />
+    </node> --> 
+<!--     <node pkg="rosservice" type="rosservice" name="head_imu_rate" 
+    	args="call /head_imu/set_stream_rate 0 20 1" output="log" respawn="true"/> -->
+
+<!-- UGV.BASE.IMU:921600 -->
+
+<!--     <node pkg="mavros" type="mavros_node" name="head_imu" clear_params="true" output="log" respawn="true">
+        <param name="fcu_url" value="/dev/UGV.HEAD.IMU:115200" />
+        <param name="gcs_url" value="" />
+        <param name="target_system_id" value="1" />
+        <param name="target_component_id" value="1" />
+
+		<param name="global_position/tf/send" value="false"/>
+        <param name="global_position/tf/frame_id" value="world"/>
+		<param name="global_position/tf/child_frame_id" value="base_frame_global"/>
+		<param name="global_position/frame_id" value="world"/>
+
+		<param name="local_position/tf/send" value="false"/>
+		<param name="local_position/frame_id" value="base_imu"/>
+		<param name="local_position/tf/frame_id" value="world"/>
+		<param name="local_position/tf/child_frame_id" value="base_frame"/>
+
+        <rosparam command="load" file="$(find mavros)/launch/px4_pluginlists.yaml" />
+        <rosparam command="load" file="$(find mavros)/launch/px4_config.yaml" />
+    </node> -->
+
+<!--
+    <node pkg="mavros" type="mavros_node" name="station_imu" required="true" clear_params="true" output="log">
+        <param name="fcu_url" value="/dev/ttyUSB0:57600" />
+        <param name="gcs_url" value="" />
+        <param name="target_system_id" value="1" />
+        <param name="target_component_id" value="1" />
+
+		<param name="global_position/tf/send" value="false"/>
+        <param name="global_position/tf/frame_id" value="world"/>
+		<param name="global_position/tf/child_frame_id" value="gps_corrector_global"/>
+		<param name="global_position/frame_id" value="world"/>
+
+		<param name="local_position/tf/send" value="false"/>
+		<param name="local_position/frame_id" value="gps_corrector"/>
+		<param name="local_position/tf/frame_id" value="world"/>
+		<param name="local_position/tf/child_frame_id" value="gps_corrector"/>
+
+        <rosparam command="load" file="$(find mavros)/launch/px4_pluginlists.yaml" />
+        <rosparam command="load" file="$(find mavros)/launch/px4_config.yaml" />
+    </node>
+
+
+		<node 
+		name="serial_node_head" 
+		pkg="rosserial_python" 
+		type="serial_node.py" 
+		output="screen" 
+		respawn="true">
+		
+		<param name="port" value="/dev/UGV.HEAD.CONTROLLER" />
+		<param name="baud" value="57600" />
+	</node> 
+-->
+
+<!-- 	<node 
+		name="arbotix" 
+		pkg="arbotix_python" 
+		type="arbotix_driver" 
+		output="screen" 
+		respawn="true">
+
+		<rosparam file="$(find teleop_ugv)/chassis_conf/tilt_head_conf.yaml" command="load"/>
+	</node> -->
+
+
+	<node name="ugv_speed_controller" pkg="teleop_ugv" type="ugv_speed_controller" output="screen" respawn="true">
+		<param name="topic_input_vel" value="/raw_ctrl"/>
+		<!-- <remap from="/ugv_1/cmd_vel" to="/ugv_1/raw_twist_ctrl"/> -->
+	</node>
+
+	<!-- <node name="ugv_pid_speed" pkg="teleop_ugv"	type="ugv_pid_speed" output="screen" respawn="true"/> -->
+
+	<node name="ugv_vel_controller" pkg="mas_mid_controller" type="ugv_vel_controller" output="screen" respawn="true"/>
+
+<!-- 	<node 
+		name="pos_sp_tf_broadcast" 
+		pkg="mas_mid_controller" 
+		type="pos_sp_tf_broadcast" 
+		output="screen" 
+		respawn="true">
+	</node>
+ -->
+<!-- <node name="scan_head" pkg="teleop_ugv" type="scan_head" output="screen" respawn="true"/> -->
+
+<!-- 	<node name="base_tf_br" pkg="teleop_ugv" type="base_tf_broadcaster" respawn="true" output="screen">
+		<param name="imu_topic" value="/base_imu/global_position/local"/>
+		<param name="parent_frame" value="world"/>
+		<param name="child_frame" value="base_frame"/>
+
+		<param name="differential_mode" value="true"/>	
+		<param name="station_topic" value="/station_imu/global_position/local"/>
+	</node>
+ -->
+	<node name="my_rviz" pkg="rviz" type="rviz" respawn="true" if="$(arg start_rviz_automatically)"/>
+<!-- 	<node name="trajectory_base" pkg="hector_trajectory_server" type="hector_trajectory_server"
+		 respawn="true">
+		<param name="taget_frame_name" value="world"/>
+		<param name="source_frame_name" value="base_frame"/>
+		<param name="trajectory_update_rate" value="4"/>
+		<param name="trajectory_publish_rate" value="1"/>
+		<remap from="/trajectory" to="/trajectory_base"/>
+	</node>
+	<node name="trajectory_station" pkg="hector_trajectory_server" type="hector_trajectory_server"
+		 respawn="true">
+		<param name="taget_frame_name" value="world"/>
+		<param name="source_frame_name" value="station_correction"/>
+		<param name="trajectory_update_rate" value="4"/>
+		<param name="trajectory_publish_rate" value="1"/>
+		<remap from="/trajectory" to="/trajectory_station"/>
+	</node>
+	<node name="trajectory_imu" pkg="hector_trajectory_server" type="hector_trajectory_server"
+		 respawn="true">
+		<param name="taget_frame_name" value="world"/>
+		<param name="source_frame_name" value="imu_actual"/>
+		<param name="trajectory_update_rate" value="4"/>
+		<param name="trajectory_publish_rate" value="1"/>
+		<remap from="/trajectory" to="/trajectory_imu"/>
+	</node> -->
+</launch>

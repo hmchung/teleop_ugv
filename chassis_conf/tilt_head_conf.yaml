@@ -1,0 +1,25 @@
+port: /dev/UGV.GUN.CONTROLLER
+baud: 115200
+rate: 100
+sync_write: True
+sync_read: True
+read_rate: 20
+write_rate: 20
+
+joints:
+ head_tilt_joint: 
+  type: dynamixel
+  id: 1
+  neutral: 2048
+  ticks: 4096
+  range: 360
+  max_angle: 180
+  min_angle: -180
+  max_speed: 60
+
+controllers:
+  head_controller:
+   type: follow_controller
+   joints: [head_tilt_joint]
+   action_name: head_controller/follow_joint_trajectory
+   onboard: False

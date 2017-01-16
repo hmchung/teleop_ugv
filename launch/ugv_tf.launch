@@ -1,0 +1,108 @@
+<launch>
+    <master auto="start"/>  
+	
+<!-- TF Tree -->
+<!--
+world
+    map
+        base_frame
+            sensors_base
+                sensors_l1
+                    fixed_cam
+                sensors_l2
+                    scan_laser_stator
+                        scan_laser_rotor ***
+                            scan_laser_emiter
+                sensors_l3
+                    pt_tilt_stator
+                        pt_tilt_rotor ***
+                            pt_pan_stator
+                                pt_pan_rotor ***
+                                    pt_cam
+            base_laser
+
+-->
+    <!--STATIC-->
+
+<!--      <node pkg="tf" type="static_transform_publisher" name="world_2_map" 
+        args="0 0 0 0 0 0 /world /map 100"/> 
+ -->
+<!--    <node pkg="tf" type="static_transform_publisher" name="map_2_base" 
+        args="0 0 0 0 0 0 /map /base_link 100"/>  -->
+
+    
+    <!--         
+    <node pkg="tf" type="static_transform_publisher" 
+        name="scanmatch_2_base" 
+        args="0 0 0 0 0 0 /scanmatcher_frame /base_frame 100"/>    
+    -->      
+<!-- 
+    <node pkg="tf" type="static_transform_publisher" name="base_frame_2_base_laser" 
+        args="0.125 0 0.15 0 0 0 /base_frame /laser_base 100"/>  -->
+<!-- 
+    <node pkg="tf" type="static_transform_publisher" name="base_frame_2_sensors_base" 
+        args="2.50 0 1.70 0 0 0 /base_link /sensors_base 100"/> 
+-->
+    <!-- args="0.075 0 0.60 0 0 0 /base_frame /sensor_base 100"/>  -->
+ <!--   
+    <node pkg="tf" type="static_transform_publisher" name="sensors_base_2_port_cam" 
+        args="-0.5 1.0 0.22 1.5708 0 0 /sensors_base /port_cam 100"/>
+
+    <node pkg="tf" type="static_transform_publisher" name="sensors_base_2_starboard_cam" 
+        args="-0.5 -1.0 0 -1.5708 0 0 /sensors_base /starboard_cam 100"/>
+    
+    <node pkg="tf" type="static_transform_publisher" name="sensors_base_2_transom_cam" 
+        args="-2.0 0 0 3.1416 0 0 /sensors_base /transom_cam 100"/>
+
+    <node pkg="tf" type="static_transform_publisher" name="sensors_base_2_sensors_l1" 
+        args="0 0 0.22 0 0 0 /sensors_base /sensors_l1 100"/>
+
+    <node pkg="tf" type="static_transform_publisher" name="sensors_l1_2_fixed_cam" 
+        args="0.01 0 0.035 0 0 0 /sensors_l1 /fixed_cam 100"/>
+
+    <node pkg="tf" type="static_transform_publisher" name="sensors_base_2_sensors_l2" 
+        args="0 0 0.48 0 0 0 /sensors_base /sensors_l2 100"/>    
+
+    <node pkg="tf" type="static_transform_publisher" name="sensors_base_2_sensors_l3" 
+        args="0 0 0.58 0 0 0 /sensors_base /sensors_l3 100"/>        
+
+    <node pkg="tf" type="static_transform_publisher" name="sensors_l2_2_scan_laser_stator" 
+        args="0.06 0 0 0 0 0 /sensors_l2 /stator_frame 100"/>
+   
+    <node pkg="tf" type="static_transform_publisher" name="rotor_2_laser" 
+        args="0.06 0 0.015 0 0 0 /rotor_frame /laser_head 100"/>
+
+    <node pkg="tf" type="static_transform_publisher" name="sensor_l3_2_tilt_stator" 
+        args="0 0 0.06 0 0 0 /sensors_l3 /pt_tilt_stator 100"/>
+
+    <node pkg="tf" type="static_transform_publisher" name="pt_tilt_rotor_2_pt_pan_stator" 
+        args="0 0 0.02 0 0 0 /pt_tilt_rotor /pt_pan_stator 100"/>    
+
+    <node pkg="tf" type="static_transform_publisher" name="pt_pan_totor_2_pan_tilt_cam" 
+        args="0 0 0.085 0 0 0 /pt_pan_rotor /pan_tilt_cam 100"/>       
+-->
+    <!-- DYNAMIC -->
+<!--     <node name="tilt_tf_br" pkg="teleop_ugv" type="tilt_tf_broadcaster" respawn="true">
+        <param name="imu_topic" value="/imu/data"/>
+        <param name="parent_frame" value="stator_frame"/>
+        <param name="child_frame" value="rotor_frame"/>
+    </node> 
+-->
+<!-- 
+    <node name="myahrs_driver" pkg="myahrs_driver" type="myahrs_driver" respawn="true">
+        <param name="port" value="/dev/UGV.HEAD.AHRS"/>
+        <param name="frame_id" value="ugv"/>
+        <param name="parent_frame_id_" value="map"/>
+    </node>
+ -->
+    <param name="robot_description" textfile="$(find ugv_jarguar)/urdf/ugv_jarguar.SLDPRT.URDF" />
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+
+
+<!--     <node name="pan_tilt_tf_br" pkg="teleop_ugv" type="pan_tilt_tf_broadcaster" 
+        respawn="true" output="screen">
+        <param name="pan_topic" value="/ugv_1/cam_pan_state"/>
+        <param name="tilt_topic" value="/ugv_1/cam_tilt_state"/>
+    </node> -->
+</launch>

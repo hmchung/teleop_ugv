@@ -1,0 +1,163 @@
+
+<!--//////////////////////////////////////////////////
+Author:         Minh-Chung HOANG
+Email:          MINHCHUN001@e.ntu.edu.sg
+Last modified:  Wed 4th Jul 16
+//////////////////////////////////////////////////-->
+
+<launch>
+    <!-- ********** DETECTION ********** -->
+
+    <include file="$(find robotx_vision)/launch/hole_roi.launch">
+        <arg name="namespace"   value="gun_cam"/>
+        <arg name="debug"       value="false"/>
+    </include>
+
+    <include file="$(find robotx_vision)/launch/detection_roi.launch">
+        <arg name="node_name"   value="f_cam_totem_red"/>
+        <arg name="namespace"   value="fixed_cam"/>
+        <arg name="object"      value="totem"/>
+        <arg name="color"       value="red"/>
+        <arg name="debug"       value="false"/>
+    </include>
+
+    <include file="$(find robotx_vision)/launch/detection_roi.launch">
+        <arg name="node_name"   value="f_cam_totem_green"/>
+        <arg name="namespace"   value="fixed_cam"/>
+        <arg name="object"      value="totem"/>
+        <arg name="color"       value="green"/>
+        <arg name="debug"       value="false"/>
+    </include>
+
+    <include file="$(find robotx_vision)/launch/detection_roi.launch">
+        <arg name="node_name"   value="pt_cam_totem_red"/>
+        <arg name="namespace"   value="pan_tilt_cam"/>
+        <arg name="object"      value="totem"/>
+        <arg name="color"       value="red"/>
+        <arg name="debug"       value="false"/>
+    </include>
+
+    <include file="$(find robotx_vision)/launch/detection_roi.launch">
+        <arg name="node_name"   value="pt_cam_totem_green"/>
+        <arg name="namespace"   value="pan_tilt_cam"/>
+        <arg name="object"      value="totem"/>
+        <arg name="color"       value="green"/>
+        <arg name="debug"       value="false"/>
+    </include>
+     
+
+    <include file="$(find robotx_vision)/launch/detection_roi.launch">
+        <arg name="node_name"   value="port_cam_totem_red"/>
+        <arg name="namespace"   value="port_cam"/>
+        <arg name="object"      value="totem"/>
+        <arg name="color"       value="red"/>
+        <arg name="debug"       value="false"/>
+    </include>
+
+    <include file="$(find robotx_vision)/launch/detection_roi.launch">
+        <arg name="node_name"   value="port_cam_totem_green"/>
+        <arg name="namespace"   value="port_cam"/>
+        <arg name="object"      value="totem"/>
+        <arg name="color"       value="green"/>
+        <arg name="debug"       value="false"/>
+    </include>  
+
+    <include file="$(find robotx_vision)/launch/detection_roi.launch">
+        <arg name="node_name"   value="starboard_cam_totem_red"/>
+        <arg name="namespace"   value="starboard_cam"/>
+        <arg name="object"      value="totem"/>
+        <arg name="color"       value="red"/>
+        <arg name="debug"       value="false"/>
+    </include>
+
+    <include file="$(find robotx_vision)/launch/detection_roi.launch">
+        <arg name="node_name"   value="starboard_cam_totem_green"/>
+        <arg name="namespace"   value="starboard_cam"/>
+        <arg name="object"      value="totem"/>
+        <arg name="color"       value="green"/>
+        <arg name="debug"       value="false"/>
+    </include>  
+
+    <include file="$(find robotx_vision)/launch/detection_roi.launch">
+        <arg name="node_name"   value="transom_cam_totem_red"/>
+        <arg name="namespace"   value="transom_cam"/>
+        <arg name="object"      value="totem"/>
+        <arg name="color"       value="red"/>
+        <arg name="debug"       value="false"/>
+    </include>
+
+    <include file="$(find robotx_vision)/launch/detection_roi.launch">
+        <arg name="node_name"   value="transom_cam_totem_green"/>
+        <arg name="namespace"   value="transom_cam"/>
+        <arg name="object"      value="totem"/>
+        <arg name="color"       value="green"/>
+        <arg name="debug"       value="false"/>
+    </include> 
+
+    <node name="f_cam_detector" pkg="map_test" type="object_detector"
+        output="screen">
+        <param name="cam_frame_name" value="fixed_cam"/>
+        <param name="cam_namespace" value="fixed_cam"/>
+    
+        <param name="object_1" value="totem"/>
+        <param name="color_1" value="red"/>
+
+        <param name="object_2" value="totem"/>
+        <param name="color_2" value="green"/>
+    </node>
+
+    <node name="pt_cam_detector" pkg="map_test" type="object_detector"
+        output="screen">
+        <param name="cam_frame_name" value="pan_tilt_cam"/>
+        <param name="cam_namespace" value="pan_tilt_cam"/>
+    
+        <param name="object_1" value="totem"/>
+        <param name="color_1" value="red"/>
+
+        <param name="object_2" value="totem"/>
+        <param name="color_2" value="green"/>
+    </node>
+
+    <node name="port_cam_detector" pkg="map_test" type="object_detector"
+        output="screen">
+        <param name="cam_frame_name" value="port_cam"/>
+        <param name="cam_namespace" value="port_cam"/>
+    
+        <param name="object_1" value="totem"/>
+        <param name="color_1" value="red"/>
+
+        <param name="object_2" value="totem"/>
+        <param name="color_2" value="green"/>
+    </node>
+
+    <node name="starboard_cam_detector" pkg="map_test" type="object_detector"
+        output="screen">
+        <param name="cam_frame_name" value="starboard_cam"/>
+        <param name="cam_namespace" value="starboard_cam"/>
+    
+        <param name="object_1" value="totem"/>
+        <param name="color_1" value="red"/>
+
+        <param name="object_2" value="totem"/>
+        <param name="color_2" value="green"/>
+    </node>
+
+    <node name="transom_cam_detector" pkg="map_test" type="object_detector"
+        output="screen">
+        <param name="cam_frame_name" value="transom_cam"/>
+        <param name="cam_namespace" value="transom_cam"/>
+    
+        <param name="object_1" value="totem"/>
+        <param name="color_1" value="red"/>
+
+        <param name="object_2" value="totem"/>
+        <param name="color_2" value="green"/>
+    </node>
+
+    <!-- ********** MARKER MANAGER ********** -->
+    <node pkg="map_test" type="object_orientation_publisher" name="object_orientation_publisher"
+        respawn="true"/>
+
+    <node pkg="map_test" type="object_manager_2" name="object_manager"
+        output="screen"/>
+</launch>

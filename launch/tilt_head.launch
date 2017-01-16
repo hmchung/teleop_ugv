@@ -1,0 +1,13 @@
+<launch>
+	<master auto="start"/>
+	<node name="arbotix" pkg="arbotix_python" type="arbotix_driver" output="screen">
+		<rosparam file="$(find teleop_ugv)/chassis_conf/tilt_head_conf.yaml" command="load" />
+	</node>
+
+<!-- 	<node name="scan_head" pkg="teleop_ugv" type="scan_head" 
+		output="screen"	respawn="true">
+		<param name="angle_lower_input" value="-0.785398"/>
+		<param name="angle_upper_input" value="0.785398"/>
+		<param name="scan_rate_input" value="0.261799"/>
+	</node> -->
+</launch> 	

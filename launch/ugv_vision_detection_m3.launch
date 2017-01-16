@@ -1,0 +1,300 @@
+
+<!--//////////////////////////////////////////////////
+Author:         Minh-Chung HOANG
+Email:          MINHCHUN001@e.ntu.edu.sg
+Last modified:  Wed 4th Jul 16
+//////////////////////////////////////////////////-->
+
+<launch>
+    <!-- ********** ROI PUBLISHER ********** -->
+    <arg name="obj_1" default="circle"/>
+    <arg name="color_1" default="red"/>
+    
+    <arg name="obj_2" default="triangle"/>
+    <arg name="color_2" default="green"/>
+    
+    <arg name="obj_3" default="triangle"/>
+    <arg name="color_3" default="red"/>
+
+    <arg name="obj_4" default="circle"/>
+    <arg name="color_4" default="green"/>
+
+    <arg name="cam_1" default="fixed_cam"/>
+    <arg name="cam_2" default="pan_tilt_cam"/>
+    <arg name="cam_3" default="port_cam"/>
+    <arg name="cam_4" default="starboard_cam"/>
+    <arg name="cam_5" default="transom_cam"/>
+    
+
+    <include file="$(find robotx_vision)/launch/hole_roi.launch">
+        <arg name="namespace"   value="gun_cam"/>
+        <arg name="debug"       value="false"/>
+    </include>
+
+    <!-- CAM 1 -->
+    <include file="$(find robotx_vision)/launch/detection_roi.launch">
+        <arg name="node_name"   value="$(arg cam_1)_$(arg obj_1)_$(arg color_1)"/>
+        <arg name="namespace"   value="$(arg cam_1)"/>
+        <arg name="object"      value="$(arg obj_1)"/>
+        <arg name="color"       value="$(arg color_1)"/>
+        <arg name="debug"       value="false"/>
+    </include>
+
+    <include file="$(find robotx_vision)/launch/detection_roi.launch">
+        <arg name="node_name"   value="$(arg cam_1)_$(arg obj_2)_$(arg color_2)"/>
+        <arg name="namespace"   value="$(arg cam_1)"/>
+        <arg name="object"      value="$(arg obj_2)"/>
+        <arg name="color"       value="$(arg color_2)"/>
+        <arg name="debug"       value="false"/>
+    </include>
+
+    <include file="$(find robotx_vision)/launch/detection_roi.launch">
+        <arg name="node_name"   value="$(arg cam_1)_$(arg obj_3)_$(arg color_3)"/>
+        <arg name="namespace"   value="$(arg cam_1)"/>
+        <arg name="object"      value="$(arg obj_3)"/>
+        <arg name="color"       value="$(arg color_3)"/>
+        <arg name="debug"       value="false"/>
+    </include>
+
+    <include file="$(find robotx_vision)/launch/detection_roi.launch">
+        <arg name="node_name"   value="$(arg cam_1)_$(arg obj_4)_$(arg color_4)"/>
+        <arg name="namespace"   value="$(arg cam_1)"/>
+        <arg name="object"      value="$(arg obj_4)"/>
+        <arg name="color"       value="$(arg color_4)"/>
+        <arg name="debug"       value="false"/>
+    </include>
+
+    <!-- CAM 2 -->
+    <include file="$(find robotx_vision)/launch/detection_roi.launch">
+        <arg name="node_name"   value="$(arg cam_2)_$(arg obj_1)_$(arg color_1)"/>
+        <arg name="namespace"   value="$(arg cam_2)"/>
+        <arg name="object"      value="$(arg obj_1)"/>
+        <arg name="color"       value="$(arg color_1)"/>
+        <arg name="debug"       value="false"/>
+    </include>
+
+    <include file="$(find robotx_vision)/launch/detection_roi.launch">
+        <arg name="node_name"   value="$(arg cam_2)_$(arg obj_2)_$(arg color_2)"/>
+        <arg name="namespace"   value="$(arg cam_2)"/>
+        <arg name="object"      value="$(arg obj_2)"/>
+        <arg name="color"       value="$(arg color_2)"/>
+        <arg name="debug"       value="false"/>
+    </include>
+
+    <include file="$(find robotx_vision)/launch/detection_roi.launch">
+        <arg name="node_name"   value="$(arg cam_2)_$(arg obj_3)_$(arg color_3)"/>
+        <arg name="namespace"   value="$(arg cam_2)"/>
+        <arg name="object"      value="$(arg obj_3)"/>
+        <arg name="color"       value="$(arg color_3)"/>
+        <arg name="debug"       value="false"/>
+    </include>
+
+    <include file="$(find robotx_vision)/launch/detection_roi.launch">
+        <arg name="node_name"   value="$(arg cam_2)_$(arg obj_4)_$(arg color_4)"/>
+        <arg name="namespace"   value="$(arg cam_2)"/>
+        <arg name="object"      value="$(arg obj_4)"/>
+        <arg name="color"       value="$(arg color_4)"/>
+        <arg name="debug"       value="false"/>
+    </include>
+
+    <!-- CAM 3 -->
+    <include file="$(find robotx_vision)/launch/detection_roi.launch">
+        <arg name="node_name"   value="$(arg cam_3)_$(arg obj_1)_$(arg color_1)"/>
+        <arg name="namespace"   value="$(arg cam_3)"/>
+        <arg name="object"      value="$(arg obj_1)"/>
+        <arg name="color"       value="$(arg color_1)"/>
+        <arg name="debug"       value="false"/>
+    </include>
+
+    <include file="$(find robotx_vision)/launch/detection_roi.launch">
+        <arg name="node_name"   value="$(arg cam_3)_$(arg obj_2)_$(arg color_2)"/>
+        <arg name="namespace"   value="$(arg cam_3)"/>
+        <arg name="object"      value="$(arg obj_2)"/>
+        <arg name="color"       value="$(arg color_2)"/>
+        <arg name="debug"       value="false"/>
+    </include>
+
+    <include file="$(find robotx_vision)/launch/detection_roi.launch">
+        <arg name="node_name"   value="$(arg cam_3)_$(arg obj_3)_$(arg color_3)"/>
+        <arg name="namespace"   value="$(arg cam_3)"/>
+        <arg name="object"      value="$(arg obj_3)"/>
+        <arg name="color"       value="$(arg color_3)"/>
+        <arg name="debug"       value="false"/>
+    </include>
+
+    <include file="$(find robotx_vision)/launch/detection_roi.launch">
+        <arg name="node_name"   value="$(arg cam_3)_$(arg obj_4)_$(arg color_4)"/>
+        <arg name="namespace"   value="$(arg cam_3)"/>
+        <arg name="object"      value="$(arg obj_4)"/>
+        <arg name="color"       value="$(arg color_4)"/>
+        <arg name="debug"       value="false"/>
+    </include>
+
+    <!-- CAM 4 -->
+    <include file="$(find robotx_vision)/launch/detection_roi.launch">
+        <arg name="node_name"   value="$(arg cam_4)_$(arg obj_1)_$(arg color_1)"/>
+        <arg name="namespace"   value="$(arg cam_4)"/>
+        <arg name="object"      value="$(arg obj_1)"/>
+        <arg name="color"       value="$(arg color_1)"/>
+        <arg name="debug"       value="false"/>
+    </include>
+
+    <include file="$(find robotx_vision)/launch/detection_roi.launch">
+        <arg name="node_name"   value="$(arg cam_4)_$(arg obj_2)_$(arg color_2)"/>
+        <arg name="namespace"   value="$(arg cam_4)"/>
+        <arg name="object"      value="$(arg obj_2)"/>
+        <arg name="color"       value="$(arg color_2)"/>
+        <arg name="debug"       value="false"/>
+    </include>
+
+    <include file="$(find robotx_vision)/launch/detection_roi.launch">
+        <arg name="node_name"   value="$(arg cam_4)_$(arg obj_3)_$(arg color_3)"/>
+        <arg name="namespace"   value="$(arg cam_4)"/>
+        <arg name="object"      value="$(arg obj_3)"/>
+        <arg name="color"       value="$(arg color_3)"/>
+        <arg name="debug"       value="false"/>
+    </include>
+
+    <include file="$(find robotx_vision)/launch/detection_roi.launch">
+        <arg name="node_name"   value="$(arg cam_4)_$(arg obj_4)_$(arg color_4)"/>
+        <arg name="namespace"   value="$(arg cam_4)"/>
+        <arg name="object"      value="$(arg obj_4)"/>
+        <arg name="color"       value="$(arg color_4)"/>
+        <arg name="debug"       value="false"/>
+    </include>
+
+    <!-- CAM 5 -->
+    <include file="$(find robotx_vision)/launch/detection_roi.launch">
+        <arg name="node_name"   value="$(arg cam_5)_$(arg obj_1)_$(arg color_1)"/>
+        <arg name="namespace"   value="$(arg cam_5)"/>
+        <arg name="object"      value="$(arg obj_1)"/>
+        <arg name="color"       value="$(arg color_1)"/>
+        <arg name="debug"       value="false"/>
+    </include>
+
+    <include file="$(find robotx_vision)/launch/detection_roi.launch">
+        <arg name="node_name"   value="$(arg cam_5)_$(arg obj_2)_$(arg color_2)"/>
+        <arg name="namespace"   value="$(arg cam_5)"/>
+        <arg name="object"      value="$(arg obj_2)"/>
+        <arg name="color"       value="$(arg color_2)"/>
+        <arg name="debug"       value="false"/>
+    </include>
+
+    <include file="$(find robotx_vision)/launch/detection_roi.launch">
+        <arg name="node_name"   value="$(arg cam_5)_$(arg obj_3)_$(arg color_3)"/>
+        <arg name="namespace"   value="$(arg cam_5)"/>
+        <arg name="object"      value="$(arg obj_3)"/>
+        <arg name="color"       value="$(arg color_3)"/>
+        <arg name="debug"       value="false"/>
+    </include>
+
+    <include file="$(find robotx_vision)/launch/detection_roi.launch">
+        <arg name="node_name"   value="$(arg cam_5)_$(arg obj_4)_$(arg color_4)"/>
+        <arg name="namespace"   value="$(arg cam_5)"/>
+        <arg name="object"      value="$(arg obj_4)"/>
+        <arg name="color"       value="$(arg color_4)"/>
+        <arg name="debug"       value="false"/>
+    </include>
+
+    <!-- ********** DETECTOR ********** -->
+    <node name="$(arg cam_1)_detector" pkg="map_test" type="object_detector"
+        output="screen">
+        <param name="cam_frame_name" value="$(arg cam_1)"/>
+        <param name="cam_namespace" value="$(arg cam_1)"/>
+    
+        <param name="object_1" value="$(arg obj_1)"/>
+        <param name="color_1" value="$(arg color_1)"/>
+
+        <param name="object_2" value="$(arg obj_2)"/>
+        <param name="color_2" value="$(arg color_2)"/>
+
+        <param name="object_3" value="$(arg obj_3)"/>
+        <param name="color_3" value="$(arg color_3)"/>
+
+        <param name="object_4" value="$(arg obj_4)"/>
+        <param name="color_4" value="$(arg color_4)"/>
+
+    </node>
+
+    <node name="$(arg cam_2)_detector" pkg="map_test" type="object_detector"
+        output="screen">
+        <param name="cam_frame_name" value="$(arg cam_2)"/>
+        <param name="cam_namespace" value="$(arg cam_2)"/>
+    
+        <param name="object_1" value="$(arg obj_1)"/>
+        <param name="color_1" value="$(arg color_1)"/>
+
+        <param name="object_2" value="$(arg obj_2)"/>
+        <param name="color_2" value="$(arg color_2)"/>
+
+        <param name="object_3" value="$(arg obj_3)"/>
+        <param name="color_3" value="$(arg color_3)"/>
+
+        <param name="object_4" value="$(arg obj_4)"/>
+        <param name="color_4" value="$(arg color_4)"/>
+    </node>
+
+    <node name="$(arg cam_3)_detector" pkg="map_test" type="object_detector"
+        output="screen">
+        <param name="cam_frame_name" value="$(arg cam_3)"/>
+        <param name="cam_namespace" value="$(arg cam_3)"/>
+    
+        <param name="object_1" value="$(arg obj_1)"/>
+        <param name="color_1" value="$(arg color_1)"/>
+
+        <param name="object_2" value="$(arg obj_2)"/>
+        <param name="color_2" value="$(arg color_2)"/>
+
+        <param name="object_3" value="$(arg obj_3)"/>
+        <param name="color_3" value="$(arg color_3)"/>
+
+        <param name="object_4" value="$(arg obj_4)"/>
+        <param name="color_4" value="$(arg color_4)"/>
+
+    </node>
+
+    <node name="$(arg cam_4)_detector" pkg="map_test" type="object_detector"
+        output="screen">
+        <param name="cam_frame_name" value="$(arg cam_4)"/>
+        <param name="cam_namespace" value="$(arg cam_4)"/>
+    
+        <param name="object_1" value="$(arg obj_1)"/>
+        <param name="color_1" value="$(arg color_1)"/>
+
+        <param name="object_2" value="$(arg obj_2)"/>
+        <param name="color_2" value="$(arg color_2)"/>
+
+        <param name="object_3" value="$(arg obj_3)"/>
+        <param name="color_3" value="$(arg color_3)"/>
+
+        <param name="object_4" value="$(arg obj_4)"/>
+        <param name="color_4" value="$(arg color_4)"/>
+
+    </node>
+
+    <node name="$(arg cam_5)_detector" pkg="map_test" type="object_detector"
+        output="screen">
+        <param name="cam_frame_name" value="$(arg cam_5)"/>
+        <param name="cam_namespace" value="$(arg cam_5)"/>
+    
+        <param name="object_1" value="$(arg obj_1)"/>
+        <param name="color_1" value="$(arg color_1)"/>
+
+        <param name="object_2" value="$(arg obj_2)"/>
+        <param name="color_2" value="$(arg color_2)"/>
+
+        <param name="object_3" value="$(arg obj_3)"/>
+        <param name="color_3" value="$(arg color_3)"/>
+
+        <param name="object_4" value="$(arg obj_4)"/>
+        <param name="color_4" value="$(arg color_4)"/>
+
+    </node>
+
+    <!-- ********** MARKER MANAGER ********** -->
+    <node pkg="map_test" type="object_orientation_publisher" name="object_orientation_publisher"
+        respawn="true"/>
+
+    <node pkg="map_test" type="object_manager_2" name="object_manager"
+        output="screen"/>
+</launch>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--//////////////////////////////////////////////////
+Author:         Minh-Chung HOANG
+Email:          MINHCHUN001@e.ntu.edu.sg
+Last modified:  Wed 6th Jan 16
+Purposes:
+    Start rviz to visualize slam process
+//////////////////////////////////////////////////-->
+
+<launch>
+    <master auto="start"/>
+    <node 
+    	pkg="rviz" 
+    	type="rviz" 
+    	name="rviz" 
+    	args="-d $(find teleop_ugv)/rviz_conf/rviz_conf.rviz"/>
+</launch>

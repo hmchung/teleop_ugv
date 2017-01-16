@@ -1,0 +1,16 @@
+Compulsory:
+	A1	- Heat transfer
+	A2	- Aircraft Electrical Devices
+
+Optional, but important:
+	B1	- SLAM Course (Cyrill Stachniss)
+	B2	- CS188 Artificial Intelligence (UCBerkeley Pieter Abbeel)
+	B3	- Visual Nav for Flying Robotics (TUM)
+
+MON		B1			A1
+TUE		B2			A2
+WED		B3			A1
+THU		B1			A2
+FRI		B2			A1
+SAT		B3			A2
+SUN		SUMMARY		SUMMARY

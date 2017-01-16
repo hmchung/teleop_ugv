@@ -1,0 +1,38 @@
+robot_name: ugv_1
+
+indoor_mode: 0 #Drive 2 wheels, indoor
+time_period_speed_control: 100 #Below 100, the loops goes faster than encoder. Giving 0 vel, corrupt PID.
+time_period_pub_encoder: 100
+
+rotation_compensator_multi: 1.1
+rotation_compensator_const: 0.0
+
+power_percent_limit: 50
+input_limit_lin: 0.5
+input_limit_ang: 1.0
+
+ugv_heart:
+ robot_name: "ugv_1"
+ topic_heartbeat: "/heartbeat"
+
+ugv_speed_controller:
+ robot_name: "ugv_1"
+ topic_input_vel: "/cmd_vel"
+ topic_output_vel: "/raw_control_signal"
+ lin_accel: 0.08
+ ang_accel: 0.3
+ lin_vel_lim: 1.0
+ ang_vel_lim: 1.0
+
+scan_head:
+ robot_name: "ugv_1"
+ scanning_mode: true
+ topic_pub_tilt_angle: "/head_tilt_joint/command"
+ input_unit_rad: false
+ broadcast_tf: true
+ frame_name_parent: "stator_frame"
+ frame_name_child: "rotor_frame"
+
+scan_angle_lower_input: -40
+scan_angle_upper_input: 0
+scan_rate_input: 80

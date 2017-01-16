@@ -1,0 +1,27 @@
+<launch>
+	<master auto="start"/>
+
+	<!-- DRIVER -->
+	<include file="$(find teleop_ugv)/launch/ugv_warmup.launch"/> 
+
+    <!-- TF -->
+	<include file="$(find teleop_ugv)/launch/ugv_tf.launch"/>
+	<include file="$(find vicon_xb)/launch/vicon_xb.launch"/>
+
+	<!-- CONTROLLERS -->
+
+	<node name="ugv_heart" pkg="teleop_ugv" type="ugv_heart" output="screen" respawn="true"/>
+
+		<node name="base_tf_br" pkg="teleop_ugv" type="base_tf_broadcaster" respawn="true" output="screen">
+		<param name="imu_topic" value="/base_imu/global_position/local"/>
+		<param name="parent_frame" value="world"/>
+		<param name="child_frame" value="base_frame"/>
+
+		<param name="differential_mode" value="true"/>	
+		<param name="station_topic" value="/station_imu/global_position/local"/>
+	</node>
+<!-- 
+	<node name="gun_controller" pkg="teleop_ugv" type="gun_controller" output="screen" respawn="true"/> 
+-->
+
+</launch>

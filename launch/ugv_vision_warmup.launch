@@ -1,0 +1,80 @@
+
+<!--//////////////////////////////////////////////////
+Author:         Minh-Chung HOANG
+Email:          MINHCHUN001@e.ntu.edu.sg
+Last modified:  Wed 4th Jul 16
+//////////////////////////////////////////////////-->
+
+<launch>
+    <!-- ********** PARAMS & ARGS ********** -->
+    <arg name="enable_indoor_slam" default="false"/>
+    <arg name="enable_octomap" default="false"/>
+    <param name="pub_map_odom_transform" value="true"/>
+
+    <arg name="base_frame" value="base_frame"/>     <!-- default="base_footprint" -->
+    <arg name="odom_frame" value="base_frame"/>     <!-- default="nav" -->
+
+    <arg name="tf_map_scanmatch_transform_frame_name" default="scanmatcher_frame"/>
+
+    <arg name="pub_map_odom_transform" default="true"/>
+    <arg name="scan_subscriber_queue_size" default="5"/>
+    <arg name="scan_topic" default="/scan"/>
+    <arg name="map_size" default="2048"/>           <!-- default="2048" -->
+
+    <!-- ********** ROSCORE ********** -->
+    <master auto="start"/>
+
+    <!-- ********** LASER  ********** -->
+
+<!--     <node pkg="hokuyo_node" type="hokuyo_node" name="head_hokuyo">
+        <param name="min_ang" value="-1.5708"/>
+        <param name="max_ang" value="1.5708"/>
+        <param name="port" value="/dev/UGV.HEAD.HOKUYO"/>
+        <param name="frame_id" value="laser_head"/>
+        <remap from="scan" to="scan_head"/>
+    </node> -->
+
+    <!-- ********** CLOUD & MAP ********** -->
+    
+<!--     <node pkg="map_test" type="cloud_builder" name="cloud_builder" 
+        output="screen" respawn="false"/>
+    <node pkg="map_test" type="map_builder_2" name="map_builder" 
+        output="screen"/> -->
+
+    <!-- ********** CAMERA  ********** -->
+<!--     <include file="$(find robotx_vision)/launch/usb_cam.launch">
+        <arg name="node_name"       value="fixed_cam_node" />
+        <arg name="video_device"    value="/dev/UGV.VIS.F_CAM" />
+        <arg name="camera_frame_id" value="camera_link" />
+        <arg name="namespace"       value="fixed_cam" />
+        <arg name="camera_info"     value="camera_info" />
+        <arg name="camera_image_raw" value="image_raw" />
+        <arg name="camera_model"    value="logitech_c170" />
+        <arg name="debug"           value="false" />
+    </include> -->
+
+<!--     <include file="$(find robotx_vision)/launch/usb_cam.launch">
+        <arg name="node_name"       value="pan_tilt_cam_node" />
+        <arg name="video_device"    value="/dev/UGV.VIS.PT_CAM" />
+        <arg name="camera_frame_id" value="camera_link" />
+        <arg name="namespace"       value="pan_tilt_cam" />
+        <arg name="camera_info"     value="camera_info" />
+        <arg name="camera_image_raw" value="image_raw" />
+        <arg name="camera_model"    value="logitech_c170" />
+        <arg name="debug"           value="false" />
+    </include> -->
+
+    <include file="$(find robotx_vision)/launch/usb_cam.launch">
+        <arg name="node_name"       value="gun_cam_node" />
+        <arg name="video_device"    value="/dev/UGV.VIS.GUN_CAM" />
+        <arg name="camera_frame_id" value="gun_cam" />
+        <arg name="namespace"       value="gun_cam" />
+        <arg name="camera_info"     value="camera_info" />
+        <arg name="camera_image_raw" value="image_raw" />
+        <arg name="camera_model"    value="logitech_c170" />
+        <arg name="debug"           value="false" />
+    </include>
+
+    <include file="$(find robotx_vision)/launch/ip_cam.launch"/>
+
+</launch>
