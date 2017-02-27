@@ -80,7 +80,6 @@ double speed_limit_upper = 1.0;
 double speed_limit_lower = -1.0;
 
 void resetTargetVel();
-void catchUp();
 void prepare_raw_output();
 void calculate_v_wheels();
 double response_lookup(double desired_vel);
@@ -156,7 +155,6 @@ int main(int argc, char** argv){
 		}
 
 		if(loop_count % 5 == 0){
-			//catchUp();
 			prepare_raw_output();
 			publish_motorControlVal();
 		}
@@ -168,6 +166,7 @@ int main(int argc, char** argv){
 void targetVel_callback(const geometry_msgs::Twist::ConstPtr& _vel){
 	target_vel = *_vel;
 	target_vel.linear.x = bound(target_vel.linear.x, lin_vel_lim);
+	target_vel.linear.y = bound(target_vel.linear.y, lin_vel_lim);
 	target_vel.angular.z = bound(target_vel.angular.z, ang_vel_lim);
 	last_input_time = ros::Time::now();
 }
@@ -266,25 +265,8 @@ void publish_wheelVel(){
 
 void resetTargetVel(){
 	target_vel.linear.x = 0.0;
+	target_vel.linear.y = 0.0;
 	target_vel.angular.z = 0.0;
-}
-
-void catchUp(){
-	double target_speed = target_vel.linear.x;
-	double control_speed = current_vel.linear.x;
-	double target_turn = target_vel.angular.z;
-	double control_turn = current_vel.angular.z;
-
-  	if 		(target_speed > control_speed)  control_speed = min( target_speed, control_speed + lin_accel);
-	else if (target_speed < control_speed)	control_speed = max( target_speed, control_speed - lin_accel);
-	else 								    control_speed = target_speed;
-
-	if 		(target_turn > control_turn)	control_turn = min( target_turn, control_turn + ang_accel);
-	else if (target_turn < control_turn)	control_turn = max( target_turn, control_turn - ang_accel);
-	else 								    control_turn = target_turn;
-
-	current_vel.linear.x = control_speed;
-	current_vel.angular.z = control_turn;
 }
 
 void prepare_raw_output(){
@@ -293,17 +275,18 @@ void prepare_raw_output(){
 	double control_speed_y = target_vel.linear.y;
 	double control_turn = target_vel.angular.z;
 
-	if (fabs(control_turn >= 0.01)){ //Has rotation: X and rotation
+	if (fabs(control_turn) > 0.02) { //Has rotation: X and rotation
 		motor_vals[0] = control_speed_x - control_turn;
 		motor_vals[1] = control_speed_x + control_turn;
 		motor_vals[2] = control_speed_x + control_turn;
 		motor_vals[3] = control_speed_x - control_turn;
 	} else { //No rotation: X & Y
-		motor_vals[0] = control_speed_x + control_speed_y;
-		motor_vals[1] = control_speed_x - control_speed_y;
+		motor_vals[0] = control_speed_x - control_speed_y;
+		motor_vals[1] = control_speed_x + control_speed_y;
 		motor_vals[2] = control_speed_x - control_speed_y;
 		motor_vals[3] = control_speed_x + control_speed_y;
 	}
+
 	for (int i = 0; i < 4; i++){
 		motor_vals[i] = response_lookup(motor_vals[i]);
 		physical_output[i] = motor_vals[i];

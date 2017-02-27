@@ -130,7 +130,7 @@ include_directories(
 
 ## Declare a C++ executable
 add_executable(ugv_speed_controller src/ugv_speed_controller.cpp)
-add_executable(ugv_speed_controller_omni src/ugv_speed_controller.cpp)
+add_executable(ugv_speed_controller_omni src/ugv_speed_controller_omni.cpp)
 add_executable(ugv_pid_speed src/ugv_pid_speed.cpp)
 add_executable(ugv_heart src/ugv_heart.cpp)
 add_executable(scan_head src/scan_head.cpp)
