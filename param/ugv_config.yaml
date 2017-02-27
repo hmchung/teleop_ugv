@@ -1,6 +1,6 @@
 robot_name: ugv_1
 
-indoor_mode: 0 #Drive 2 wheels, indoor
+indoor_mode: 0 #Set to 1 to drive 2 wheels, for indoor
 time_period_speed_control: 100 #Below 100, the loops goes faster than encoder. Giving 0 vel, corrupt PID.
 time_period_pub_encoder: 100
 

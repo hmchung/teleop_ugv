@@ -130,6 +130,7 @@ include_directories(
 
 ## Declare a C++ executable
 add_executable(ugv_speed_controller src/ugv_speed_controller.cpp)
+add_executable(ugv_speed_controller_omni src/ugv_speed_controller.cpp)
 add_executable(ugv_pid_speed src/ugv_pid_speed.cpp)
 add_executable(ugv_heart src/ugv_heart.cpp)
 add_executable(scan_head src/scan_head.cpp)
@@ -142,6 +143,7 @@ add_executable(gun_controller src/gun_controller.cpp)
 
 ## Specify libraries to link a library or executable target against
 target_link_libraries(ugv_speed_controller ${catkin_LIBRARIES})
+target_link_libraries(ugv_speed_controller_omni ${catkin_LIBRARIES})
 target_link_libraries(ugv_pid_speed ${catkin_LIBRARIES})
 target_link_libraries(ugv_heart ${catkin_LIBRARIES})
 target_link_libraries(scan_head ${catkin_LIBRARIES})
