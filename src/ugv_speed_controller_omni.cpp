@@ -275,17 +275,22 @@ void prepare_raw_output(){
 	double control_speed_y = target_vel.linear.y;
 	double control_turn = target_vel.angular.z;
 
-	if (fabs(control_turn) > 0.02) { //Has rotation: X and rotation
-		motor_vals[0] = control_speed_x - control_turn;
-		motor_vals[1] = control_speed_x + control_turn;
-		motor_vals[2] = control_speed_x + control_turn;
-		motor_vals[3] = control_speed_x - control_turn;
-	} else { //No rotation: X & Y
-		motor_vals[0] = control_speed_x - control_speed_y;
-		motor_vals[1] = control_speed_x + control_speed_y;
-		motor_vals[2] = control_speed_x - control_speed_y;
-		motor_vals[3] = control_speed_x + control_speed_y;
-	}
+	// if (fabs(control_turn) > 0.02) { //Has rotation: X and rotation
+	// 	motor_vals[0] = control_speed_x - control_turn;
+	// 	motor_vals[1] = control_speed_x + control_turn;
+	// 	motor_vals[2] = control_speed_x + control_turn;
+	// 	motor_vals[3] = control_speed_x - control_turn;
+	// } else { //No rotation: X & Y
+	// 	motor_vals[0] = control_speed_x - control_speed_y;
+	// 	motor_vals[1] = control_speed_x + control_speed_y;
+	// 	motor_vals[2] = control_speed_x - control_speed_y;
+	// 	motor_vals[3] = control_speed_x + control_speed_y;
+	// }
+
+	motor_vals[0] = control_speed_x - control_speed_y - control_turn;
+	motor_vals[1] = control_speed_x + control_speed_y + control_turn;
+	motor_vals[2] = control_speed_x - control_speed_y + control_turn;
+	motor_vals[3] = control_speed_x + control_speed_y - control_turn;
 
 	for (int i = 0; i < 4; i++){
 		motor_vals[i] = response_lookup(motor_vals[i]);
