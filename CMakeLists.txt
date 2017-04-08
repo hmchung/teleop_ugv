@@ -129,34 +129,34 @@ include_directories(
 # add_dependencies(teleop_ugv ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Declare a C++ executable
-add_executable(ugv_speed_controller src/ugv_speed_controller.cpp)
-add_executable(ugv_speed_controller_omni src/ugv_speed_controller_omni.cpp)
-add_executable(ugv_pid_speed src/ugv_pid_speed.cpp)
-add_executable(ugv_heart src/ugv_heart.cpp)
-add_executable(scan_head src/scan_head.cpp)
-add_executable(tilt_tf_broadcaster src/tilt_tf_broadcaster.cpp)
-add_executable(base_tf_broadcaster src/base_tf_broadcaster.cpp)
-add_executable(pan_tilt_cam_controller src/pan_tilt_cam_controller.cpp)
-add_executable(pan_tilt_tf_broadcaster src/pan_tilt_tf_broadcaster.cpp)
-add_executable(gun_controller src/gun_controller.cpp)
+# add_executable(ugv_speed_controller src/ugv_speed_controller.cpp)
+# add_executable(ugv_speed_controller_omni src/ugv_speed_controller_omni.cpp)
+# add_executable(ugv_pid_speed src/ugv_pid_speed.cpp)
+# add_executable(ugv_heart src/ugv_heart.cpp)
+# add_executable(scan_head src/scan_head.cpp)
+# add_executable(tilt_tf_broadcaster src/tilt_tf_broadcaster.cpp)
+# add_executable(base_tf_broadcaster src/base_tf_broadcaster.cpp)
+# add_executable(pan_tilt_cam_controller src/pan_tilt_cam_controller.cpp)
+# add_executable(pan_tilt_tf_broadcaster src/pan_tilt_tf_broadcaster.cpp)
+# add_executable(gun_controller src/gun_controller.cpp)
 
 
 ## Specify libraries to link a library or executable target against
-target_link_libraries(ugv_speed_controller ${catkin_LIBRARIES})
-target_link_libraries(ugv_speed_controller_omni ${catkin_LIBRARIES})
-target_link_libraries(ugv_pid_speed ${catkin_LIBRARIES})
-target_link_libraries(ugv_heart ${catkin_LIBRARIES})
-target_link_libraries(scan_head ${catkin_LIBRARIES})
-target_link_libraries(tilt_tf_broadcaster ${catkin_LIBRARIES})
-target_link_libraries(base_tf_broadcaster ${catkin_LIBRARIES})
-target_link_libraries(pan_tilt_cam_controller ${catkin_LIBRARIES})
-target_link_libraries(pan_tilt_tf_broadcaster ${catkin_LIBRARIES})
-target_link_libraries(gun_controller ${catkin_LIBRARIES})
+# target_link_libraries(ugv_speed_controller ${catkin_LIBRARIES})
+# target_link_libraries(ugv_speed_controller_omni ${catkin_LIBRARIES})
+# target_link_libraries(ugv_pid_speed ${catkin_LIBRARIES})
+# target_link_libraries(ugv_heart ${catkin_LIBRARIES})
+# target_link_libraries(scan_head ${catkin_LIBRARIES})
+# target_link_libraries(tilt_tf_broadcaster ${catkin_LIBRARIES})
+# target_link_libraries(base_tf_broadcaster ${catkin_LIBRARIES})
+# target_link_libraries(pan_tilt_cam_controller ${catkin_LIBRARIES})
+# target_link_libraries(pan_tilt_tf_broadcaster ${catkin_LIBRARIES})
+# target_link_libraries(gun_controller ${catkin_LIBRARIES})
 
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
-add_dependencies(ugv_pid_speed teleop_ugv_gencpp)
+# add_dependencies(ugv_pid_speed teleop_ugv_gencpp)
 
 #############
 ## Install ##
